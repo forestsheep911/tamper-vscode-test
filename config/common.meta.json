@@ -1,15 +1,15 @@
 {
-  "name": "斗鱼直播助手",
-  "namespace": "https://github.com/Eished/douyu-helper",
-  "version": "2022.08.22",
-  "description": "斗鱼直播自动切换画质，全局设置最高画质或最低画质，可单独设置每个直播间画质：原画、4K、2K、1080p、蓝光、720p、超清、高清清晰度，自动记忆并切换到上次选择的画质。油猴开发模板，Tampermonkey template",
-  "author": "Eished",
-  "copyright": "Eished",
+  "name": "no-mobile-wiki",
+  "namespace": "https://github.com/forestsheep911/tamper-vscode-test",
+  "version": "0.0.1",
+  "description": "永远不使用手机版wiki，为什么用谷歌搜索wiki时，第一条总给我手机版网页？我想看PC版不行吗？本脚本发现手机版网页立即强制跳转PC版网页，解决你这个问题。",
+  "author": "boccaro",
+  "copyright": "boccaro",
   "license": "MIT",
-  "match": ["*://*.douyu.com/*"],
-  "run-at": "document-idle",
-  "supportURL": "https://github.com/Eished/douyu-helper/issues",
-  "homepage": "https://github.com/Eished/douyu-helper",
-  "grant": ["GM_getValue", "GM_setValue", "GM_registerMenuCommand"],
-  "icon": "https://www.google.com/s2/favicons?domain=douyu.com"
+  "match": ["https://*.wikipedia.org/*"],
+  "run-at": "document-start",
+  "supportURL": "https://github.com/forestsheep911/tamper-vscode-test/issues",
+  "homepage": "https://github.com/forestsheep911/tamper-vscode-test/",
+  "grant": ["GM_addValueChangeListener"],
+  "icon": "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-wiki-productivity-flaticons-lineal-color-flat-icons-5.png"
 }

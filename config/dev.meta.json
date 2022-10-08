@@ -1,7 +1,7 @@
 {
-  "name": "斗鱼直播助手-dev",
-  "namespace": "https://github.com/Eished/douyu-helper-dev",
-  "match": ["*://*.douyu.com/*", "*://*.localhost/*"],
-  "grant": ["GM_getValue", "GM_setValue", "GM_registerMenuCommand", "GM_addValueChangeListener"],
-  "require": ["file://\\\\wsl$\\Ubuntu-20.04\\home\\eis\\web\\douyu-helper\\dist\\douyu.dev.user.js"]
+  "name": "no-mobile-wiki",
+  "namespace": "https://github.com/forestsheep911/tamper-vscode-test",
+  "match": ["https://*.wikipedia.org/*"],
+  "grant": ["GM_addValueChangeListener"],
+  "require": ["file://D:/dev/github/tamper-vscode-test/dist/douyu.dev.user.js"]
 }
