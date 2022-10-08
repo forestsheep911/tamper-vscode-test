@@ -1,7 +1,7 @@
 export const autoInstall = () => {
-  const isNewInstall = localStorage.getItem('isNewInstall');
+  const isNewInstall = localStorage.getItem('isNewInstall')
   if (!isNewInstall) {
-    window.open(FILENAME, 'self');
-    localStorage.setItem('isNewInstall', 'false');
+    window.open(FILENAME, 'self')
+    localStorage.setItem('isNewInstall', 'false')
   }
-};
+}

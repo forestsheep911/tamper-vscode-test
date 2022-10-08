@@ -1,19 +1,17 @@
 // ==UserScript==
-// @name                斗鱼直播助手
-// @namespace           https://github.com/Eished/douyu-helper
-// @version             2022.08.22
-// @description         斗鱼直播自动切换画质，全局设置最高画质或最低画质，可单独设置每个直播间画质：原画、4K、2K、1080p、蓝光、720p、超清、高清清晰度，自动记忆并切换到上次选择的画质。油猴开发模板，Tampermonkey template
-// @author              Eished
-// @copyright           Eished
+// @name                no-mobile-wiki
+// @namespace           https://github.com/forestsheep911/tamper-vscode-test
+// @version             0.0.1
+// @description         永远不使用手机版wiki，为什么用谷歌搜索wiki时，第一条总给我手机版网页？我想看PC版不行吗？本脚本发现手机版网页立即强制跳转PC版网页，解决你这个问题。
+// @author              boccaro
+// @copyright           boccaro
 // @license             MIT
-// @match               *://*.douyu.com/*
-// @run-at              document-idle
-// @supportURL          https://github.com/Eished/douyu-helper/issues
-// @homepage            https://github.com/Eished/douyu-helper
-// @grant               GM_getValue
-// @grant               GM_setValue
-// @grant               GM_registerMenuCommand
-// @icon                https://www.google.com/s2/favicons?domain=douyu.com
+// @match               https://*.wikipedia.org/*
+// @run-at              document-start
+// @supportURL          https://github.com/forestsheep911/tamper-vscode-test/issues
+// @homepage            https://github.com/forestsheep911/tamper-vscode-test/
+// @grant               GM_addValueChangeListener
+// @icon                https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-wiki-productivity-flaticons-lineal-color-flat-icons-5.png
 // ==/UserScript==
 /* eslint-disable */ /* spell-checker: disable */
 // @[ You can find all source codes in GitHub repo ]
@@ -27,88 +25,10 @@
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var app = function () {
-    var rid = new URLSearchParams(window.location.search).get('rid');
-    if (!rid) {
-        var results = window.location.pathname.match(/[\d]{1,10}/);
-        if (results) {
-            rid = results[0];
-        }
-        else {
-            return;
-        }
-    }
-    var videoSub = document.querySelector('.layout-Player-videoSub');
-    if (rid && videoSub) {
-        autoSelectClarity(rid, videoSub);
-    }
-};
-var autoSelectClarity = function (rid, videoSub) {
-    var Clarities = ['全局默认最高画质', '全局默认最低画质'];
-    var selectedClarity = GM_getValue(rid);
-    var defaultClarity = GM_getValue('defaultClarity');
-    var clickClarity = function (li, save) {
-        if (save === void 0) { save = false; }
-        if (!li.className.includes('selected')) {
-            save ? GM_setValue(rid, li.innerText) : null;
-            li.click();
-        }
-    };
-    var selectClarity = function (list) {
-        // 注册菜单栏
-        Clarities.forEach(function (clarity, index) {
-            GM_registerMenuCommand(clarity, function () {
-                if (index === 0) {
-                    clickClarity(list[0]);
-                    GM_setValue('defaultClarity', 1);
-                }
-                else {
-                    clickClarity(list[list.length - 1]);
-                    GM_setValue('defaultClarity', 0);
-                }
-                if (selectedClarity) {
-                    GM_setValue(rid, null);
-                }
-            });
-        });
-        var notFoundCount = 0;
-        list.forEach(function (li) {
-            var availableClarity = li.innerText;
-            if (selectedClarity === availableClarity) {
-                // 选择自定义画质
-                clickClarity(li);
-            }
-            else {
-                notFoundCount++;
-            }
-            // 防止误触发保存，仅保存真实点击
-            li.addEventListener('click', function (e) { return clickClarity(li, e.isTrusted); });
-            // 注册菜单栏
-            GM_registerMenuCommand(availableClarity, function () { return clickClarity(li, true); });
-        });
-        // 选择默认画质
-        if (notFoundCount === list.length) {
-            if (defaultClarity === 0) {
-                clickClarity(list[list.length - 1]);
-            }
-            else {
-                clickClarity(list[0]);
-            }
-        }
-    };
-    var callback = function (mutations, observer) {
-        var controller = videoSub === null || videoSub === void 0 ? void 0 : videoSub.querySelector("[value=\"\u753B\u8D28 \"]");
-        if (controller) {
-            observer.disconnect();
-            var ul = controller.nextElementSibling;
-            var list = ul === null || ul === void 0 ? void 0 : ul.querySelectorAll('li');
-            list ? selectClarity(list) : console.debug('斗鱼直播助手：未找到画质选项');
-        }
-    };
-    var observer = new MutationObserver(callback);
-    observer.observe(videoSub, {
-        childList: true,
-        subtree: true,
-    });
+    console.log(window.location.host);
+    var theHost = window.location.host;
+    if (theHost.indexOf('.m.') !== -1)
+        window.location.host = theHost.replace('.m.', '.');
 };
 exports["default"] = app;
 
