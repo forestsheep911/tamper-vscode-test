@@ -1,11 +1,11 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { baseOptions, getBanner } = require('./webpack.config.base');
-const devBanner = require('./dev.meta.json');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { baseOptions, getBanner } = require('./webpack.config.base')
+const devBanner = require('./dev.meta.js')
 
-module.exports = (env) => {
-  baseOptions.output.filename = env.filename;
+module.exports = () => {
+  baseOptions.output.filename = `${devBanner.name}.dev.user.js`
   baseOptions.plugins.push(
     new webpack.BannerPlugin({
       banner: getBanner(devBanner),
@@ -14,13 +14,13 @@ module.exports = (env) => {
     }),
     new webpack.DefinePlugin({
       PRODUCTION: false,
-      FILENAME: JSON.stringify(env.filename),
+      FILENAME: JSON.stringify(`${devBanner.name}.dev.user.js`),
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       inject: 'body',
-    })
-  );
+    }),
+  )
   baseOptions.devServer = {
     static: [
       {
@@ -36,8 +36,8 @@ module.exports = (env) => {
     open: true,
     liveReload: true,
     watchFiles: ['src/**/*', 'public/**/*'],
-  };
-  baseOptions.mode = 'development';
+  }
+  baseOptions.mode = 'development'
 
-  return baseOptions;
-};
+  return baseOptions
+}

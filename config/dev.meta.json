@@ -1,7 +1,0 @@
-{
-  "name": "no-mobile-wiki",
-  "namespace": "https://github.com/forestsheep911/tamper-vscode-test",
-  "match": ["https://*.wikipedia.org/*"],
-  "grant": ["GM_addValueChangeListener"],
-  "require": ["file://D:/dev/github/tamper-vscode-test/dist/douyu.dev.user.js"]
-}
