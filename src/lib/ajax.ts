@@ -5,7 +5,7 @@ import { MessageBox } from '@/lib/message'
 export const getData = (
   url: string,
   type: XhrResponseType = XhrResponseType.DOCUMENT,
-  usermethod: XhrMethod = XhrMethod.GET
+  usermethod: XhrMethod = XhrMethod.GET,
 ): Promise<Document> => {
   return new Promise((resolve, reject) => {
     GM_xmlhttpRequest({
@@ -43,7 +43,7 @@ export const postData = (
     responseType: XhrResponseType.FORM,
     usermethod: XhrMethod.POST,
     contentType: XhrResponseType.FORM,
-  }
+  },
 ): Promise<MonkeyXhrResponse> => {
   return new Promise((resolve, reject) => {
     GM_xmlhttpRequest({
